@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Прості Картки</string>
+    <string name="title_name">КАРТКИ</string>
+    <string name="edtText_EnterText">Уведіть текст</string>
+    <string name="symbol_plus">+</string>
+    <string name="txtBtn_start">ПОЧАТОК</string>
+    <string name="txtShow_no_word">НЕ МАЄ СЛОВА</string>
+    <string name="todo">TODO</string>
+</resources>

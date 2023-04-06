@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "172486528431",
+    "project_id": "cards-382614",
+    "storage_bucket": "cards-382614.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:172486528431:android:5360c230331c9c1d68735a",
+        "android_client_info": {
+          "package_name": "com.example.simplecards"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "172486528431-vvuts0ne1fltu5ep8m9a457jr19m8asq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDaNKxv9WE5OZXLlJEopSNVKP1tWA1-qDI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "172486528431-vvuts0ne1fltu5ep8m9a457jr19m8asq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

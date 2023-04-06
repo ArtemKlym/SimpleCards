@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">SimpleCards</string>
+    <string name="title_name">CARDS</string>
+    <string name="edtText_EnterText">Enter text</string>
+    <string name="symbol_plus">+</string>
+    <string name="txtBtn_start">START</string>
+    <string name="txtShow_no_word">NO WORD</string>
+    <string name="todo">TODO</string>
+</resources>
