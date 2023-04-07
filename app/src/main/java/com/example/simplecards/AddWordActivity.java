@@ -16,6 +16,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.simplecards.database.MyDataBaseHelper;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.ml.common.modeldownload.FirebaseModelDownloadConditions;
@@ -34,8 +35,9 @@ public class AddWordActivity extends AppCompatActivity {
    private String[] fromLanguages = {"From","English","Spain","German","Ukrainian","Russian","Japanese","Mandarin","Hindi","Bengali","French","Italian","Polish"};
    private String[] toLanguages = {"TO","English","Spain","German","Ukrainian","Russian","Japanese","Mandarin","Hindi","Bengali","French","Italian","Polish"};
 
-
    int fromLangCode, toLangCode = 0;
+
+   private MyDataBaseHelper myDB;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,6 +98,11 @@ public class AddWordActivity extends AppCompatActivity {
                 translateText(fromLangCode,toLangCode,editable);
             }
         });
+
+        //TODO: Add to Database
+        btnAdd.setOnClickListener(v ->{
+            myDB.addRawToDataBase(originText.getText().toString().trim(),translatedText.getText().toString().trim());
+        });
     }
 
 
@@ -114,6 +121,7 @@ public class AddWordActivity extends AppCompatActivity {
         translator.downloadModelIfNeeded(conditions).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void unused) {
+                translateTextView.setText("");
                 translator.translate(editable.toString()).addOnSuccessListener(new OnSuccessListener<String>() {
                     @Override
                     public void onSuccess(String s) {
@@ -178,5 +186,6 @@ public class AddWordActivity extends AppCompatActivity {
         toSpinner = findViewById(R.id.spinnerSelectLang2);
 
         btnAdd = findViewById(R.id.btnAddNewWord);
+        myDB = new MyDataBaseHelper(AddWordActivity.this);
     }
 }
