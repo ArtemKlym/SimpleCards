@@ -37,15 +37,16 @@
         android:layout_height="match_parent">
 
         <com.google.android.material.bottomappbar.BottomAppBar
-            android:id="@+id/bottomAppBar"
+            android:id="@+id/bottomAppBarId"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
             android:backgroundTint="@color/teal_700"
             app:fabAlignmentMode="center"
+            app:fabCradleMargin="5dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"/>
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/btnAdd"
@@ -57,7 +58,8 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:srcCompat="@drawable/ic_add"
-                app:layout_anchor="@id/bottomAppBar"/>
+                app:layout_anchor="@id/bottomAppBarId"/>
+
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
