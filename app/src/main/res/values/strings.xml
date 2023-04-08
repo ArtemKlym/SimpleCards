@@ -6,4 +6,5 @@
     <string name="txtBtn_start">START</string>
     <string name="txtShow_no_word">NO WORD</string>
     <string name="todo">TODO</string>
+    <string name="cards">cards</string>
 </resources>
