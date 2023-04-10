@@ -1,11 +1,14 @@
 package com.example.simplecards;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.database.Cursor;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.widget.Toast;
 
 import com.example.simplecards.database.MyDataBaseHelper;
@@ -33,6 +36,14 @@ public class ShowCardsActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(ShowCardsActivity.this));
 
+    }
+
+    //Show menu in ShowCardsActivity
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.show_cards_menu,menu);
+        return super.onCreateOptionsMenu(menu);
     }
 
     //Get data from myDB and store it in arrays
