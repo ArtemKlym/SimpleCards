@@ -44,7 +44,11 @@ public class MainActivity extends AppCompatActivity {
         bottomAppBar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
-                startActivity(new Intent(MainActivity.this,ShowCardsActivity.class));
+                switch(item.getItemId()){
+                    case R.id.menu_cards_ic:
+                        startActivity(new Intent(MainActivity.this,ShowCardsActivity.class));
+                        break;
+                }
                 return true;
             }
         });
