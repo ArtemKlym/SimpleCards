@@ -17,9 +17,12 @@
         tools:targetApi="31">
         <activity
             android:name=".ShowCardsActivity"
-            android:exported="false" />
+            android:label="Cards List"
+            android:exported="false"
+            android:parentActivityName=".MainActivity"/>
         <activity
             android:name=".AddWordActivity"
+            android:label="Add Word"
             android:exported="false"
             android:parentActivityName=".MainActivity" />
         <activity

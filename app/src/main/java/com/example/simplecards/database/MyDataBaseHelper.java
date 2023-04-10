@@ -2,6 +2,7 @@ package com.example.simplecards.database;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.widget.Toast;
@@ -19,7 +20,7 @@ public class MyDataBaseHelper extends SQLiteOpenHelper {
     public static final String COLUMN_TRANSLATE_TEXT = "translate";
 
     private static final String SQL_CREATE_ENTRIES =
-            "CREATE TABLE " + TABLE_NAME + " (" +
+            "CREATE TABLE IF NOT EXISTS " + TABLE_NAME + " (" +
                     COLUMN_TABLE_ID + " INTEGER PRIMARY KEY," +
                     COLUMN_ORIGIN_TEXT + " TEXT," +
                     COLUMN_TRANSLATE_TEXT + " TEXT)";
@@ -59,5 +60,17 @@ public class MyDataBaseHelper extends SQLiteOpenHelper {
         else{
             Toast.makeText(context, "Added to Database", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    public Cursor readAllWordsFromDB(){
+        String queryGetAllData = "SELECT * FROM "+TABLE_NAME;
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = null;
+        if(db != null){
+            //Store data in cursor
+           cursor = db.rawQuery(queryGetAllData,null);
+        }
+        return cursor;
     }
 }
