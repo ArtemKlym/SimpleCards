@@ -73,4 +73,11 @@ public class MyDataBaseHelper extends SQLiteOpenHelper {
         }
         return cursor;
     }
+
+    public boolean deleteItem(String originText, String translatedText){
+        SQLiteDatabase db = this.getWritableDatabase();
+        return db.delete(TABLE_NAME,
+                COLUMN_ORIGIN_TEXT+"=? and "+COLUMN_TRANSLATE_TEXT+"=?",
+                new String[]{originText,translatedText}) > 0;
+    }
 }
