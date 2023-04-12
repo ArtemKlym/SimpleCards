@@ -80,4 +80,14 @@ public class MyDataBaseHelper extends SQLiteOpenHelper {
                 COLUMN_ORIGIN_TEXT+"=? and "+COLUMN_TRANSLATE_TEXT+"=?",
                 new String[]{originText,translatedText}) > 0;
     }
+
+    public boolean updateData(String id, String origin, String translate){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+
+        cv.put(COLUMN_ORIGIN_TEXT, origin.toString().trim());
+        cv.put(COLUMN_TRANSLATE_TEXT,translate);
+
+        return db.update(TABLE_NAME,cv,"id=?",new String[]{id}) > 0;
+    }
 }

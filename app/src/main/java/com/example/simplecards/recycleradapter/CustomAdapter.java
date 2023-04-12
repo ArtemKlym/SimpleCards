@@ -31,11 +31,12 @@ import java.util.ArrayList;
 public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHolder>{
 
     Context context;
-    ArrayList<String> originText, translatedText;
+    ArrayList<String> originText, translatedText,id;
     MyDataBaseHelper myDB;
 
-    public CustomAdapter(Context context, ArrayList<String> originText, ArrayList<String> translatedText) {
+    public CustomAdapter(Context context,ArrayList<String> id, ArrayList<String> originText, ArrayList<String> translatedText) {
         this.context = context;
+        this.id = id;
         this.originText = originText;
         this.translatedText = translatedText;
     }
@@ -110,7 +111,12 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
                                 Toast.makeText(context, "Fail to delete", Toast.LENGTH_SHORT).show();
                             }
                         return true;
-                        case R.id.editMenu: context.startActivity(new Intent(context, UpdateActivity.class));
+                        case R.id.editMenu:
+                            Intent intent = new Intent(context, UpdateActivity.class);
+                            intent.putExtra("id",String.valueOf(id.get(getAdapterPosition())));
+                            intent.putExtra("origin",String.valueOf(originText.get(getAdapterPosition())));
+                            intent.putExtra("translated",String.valueOf(translatedText.get(getAdapterPosition())));
+                            context.startActivity(intent);
                         return true;
 
                         default: return false;
