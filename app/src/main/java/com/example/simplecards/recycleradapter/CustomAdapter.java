@@ -23,6 +23,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.simplecards.R;
 import com.example.simplecards.ShowCardsActivity;
+import com.example.simplecards.UpdateActivity;
 import com.example.simplecards.database.MyDataBaseHelper;
 
 import java.util.ArrayList;
@@ -108,6 +109,8 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
                             }else{
                                 Toast.makeText(context, "Fail to delete", Toast.LENGTH_SHORT).show();
                             }
+                        return true;
+                        case R.id.editMenu: context.startActivity(new Intent(context, UpdateActivity.class));
                         return true;
 
                         default: return false;
