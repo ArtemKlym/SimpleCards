@@ -16,14 +16,19 @@
         android:theme="@style/Theme.SimpleCards"
         tools:targetApi="31">
         <activity
-            android:name=".ShowCardsActivity"
-            android:label="Cards List"
+            android:name=".UpdateActivity"
             android:exported="false"
-            android:parentActivityName=".MainActivity"/>
+            android:label="Update card"
+            android:parentActivityName=".ShowCardsActivity"/>
+        <activity
+            android:name=".ShowCardsActivity"
+            android:exported="false"
+            android:label="Cards List"
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".AddWordActivity"
-            android:label="Add Word"
             android:exported="false"
+            android:label="Add Word"
             android:parentActivityName=".MainActivity" />
         <activity
             android:name=".MainActivity"

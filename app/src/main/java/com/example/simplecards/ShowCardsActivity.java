@@ -16,7 +16,7 @@ import java.util.ArrayList;
 public class ShowCardsActivity extends AppCompatActivity {
 
     private MyDataBaseHelper myDB;
-    private ArrayList<String> origin_word, translated_word;
+    private ArrayList<String> origin_word, translated_word,id;
     private RecyclerView recyclerView;
     private CustomAdapter adapter;
     @Override
@@ -29,7 +29,7 @@ public class ShowCardsActivity extends AppCompatActivity {
         storeDataInArrays();
 
         //Set adapter to RecyclerView
-        adapter = new CustomAdapter(ShowCardsActivity.this,origin_word,translated_word);
+        adapter = new CustomAdapter(ShowCardsActivity.this,id,origin_word,translated_word);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(ShowCardsActivity.this));
     }
@@ -41,6 +41,7 @@ public class ShowCardsActivity extends AppCompatActivity {
             Toast.makeText(this, "There is no data", Toast.LENGTH_SHORT).show();
         }else{
             while(cursor.moveToNext()){
+                id.add(cursor.getString(0));
                 origin_word.add(cursor.getString(1));
                 translated_word.add(cursor.getString(2));
             }
@@ -50,6 +51,7 @@ public class ShowCardsActivity extends AppCompatActivity {
     private void initViews() {
         recyclerView = findViewById(R.id.showCardsRecView);
 
+        id = new ArrayList<>();
         origin_word = new ArrayList<>();
         translated_word = new ArrayList<>();
 
