@@ -7,31 +7,10 @@
     tools:context=".LearnCardsActivity"
     android:background="@color/teal_200">
 
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/cardView"
+    <com.yalantis.library.Koloda
+        android:id="@+id/koloda"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:layout_marginStart="64dp"
-        android:layout_marginEnd="64dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:cardElevation="18dp"
-        app:cardCornerRadius="18dp">
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-        <TextView
-            android:id="@+id/txtShowOnCard"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Text"
-            android:textSize="24sp"
-            android:textColor="@color/black"
-            android:letterSpacing="0.1"
-            android:layout_centerInParent="true"/>
-        </RelativeLayout>
-
-    </com.google.android.material.card.MaterialCardView>
+        android:layout_height="match_parent"
+        app:koloda_card_layout="@layout/item_koloda" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
