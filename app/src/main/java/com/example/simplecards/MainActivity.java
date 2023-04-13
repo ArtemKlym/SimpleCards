@@ -53,6 +53,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        btnStart.setOnClickListener(v->{
+            startActivity(new Intent(MainActivity.this,LearnCardsActivity.class));
+        });
     }
 
     private void initViews() {
