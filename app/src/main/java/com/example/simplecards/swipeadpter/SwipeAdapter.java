@@ -2,6 +2,8 @@ package com.example.simplecards.swipeadpter;
 
 import static java.util.Objects.*;
 
+import android.animation.AnimatorInflater;
+import android.animation.AnimatorSet;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +12,7 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.simplecards.R;
@@ -22,6 +25,11 @@ import java.util.Objects;
 public class SwipeAdapter extends BaseAdapter {
     private Context context;
     private ArrayList<String> originWord,translatedWord;
+
+    private TextView frontText,backText;
+
+
+    private boolean isFront = true;
 
     public SwipeAdapter(Context context, ArrayList<String> originWord, ArrayList<String> translatedWord) {
         this.context = context;
@@ -47,13 +55,23 @@ public class SwipeAdapter extends BaseAdapter {
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
         View convertView;
+
         if(view == null){
             convertView = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_koloda,viewGroup,false);
         }else{
             convertView = view;
         }
-        TextView frontText = convertView.findViewById(R.id.txtShowOnCard);
+
+        initItems(convertView);
+
         frontText.setText(originWord.get(i));
+        backText.setText(translatedWord.get(i));
+
         return convertView;
+    }
+
+    private void initItems(View itemView) {
+        frontText = itemView.findViewById(R.id.textFront);
+        backText = itemView.findViewById(R.id.textBack);
     }
 }
