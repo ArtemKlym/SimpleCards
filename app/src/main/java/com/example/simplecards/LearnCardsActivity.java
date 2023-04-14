@@ -1,5 +1,6 @@
 package com.example.simplecards;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
@@ -7,14 +8,17 @@ import android.animation.AnimatorInflater;
 import android.animation.AnimatorSet;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.util.ArraySet;
 import android.util.Log;
 import android.view.View;
 
 import com.example.simplecards.database.MyDataBaseHelper;
 import com.example.simplecards.swipeadpter.SwipeAdapter;
 import com.yalantis.library.Koloda;
+import com.yalantis.library.KolodaListener;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class LearnCardsActivity extends AppCompatActivity {
 
@@ -23,6 +27,7 @@ public class LearnCardsActivity extends AppCompatActivity {
     private MyDataBaseHelper myDB;
     Koloda koloda;
 
+    private int[] frequency;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +42,60 @@ public class LearnCardsActivity extends AppCompatActivity {
         swipeAdapter = new SwipeAdapter(this,origin,translated);
         koloda.setAdapter(swipeAdapter);
 
+        koloda.setKolodaListener(new KolodaListener() {
+            @Override
+            public void onNewTopCard(int i) {
+
+            }
+
+            @Override
+            public void onCardDrag(int i, @NonNull View view, float v) {
+
+            }
+
+            @Override
+            public void onCardSwipedLeft(int i) {
+                if(frequency[i] > 0)
+                    frequency[i] +=1;
+            }
+
+            @Override
+            public void onCardSwipedRight(int i) {
+                if(frequency[i] > 0)
+                    frequency[i] -=1;
+            }
+
+            @Override
+            public void onClickRight(int i) {
+
+            }
+
+            @Override
+            public void onClickLeft(int i) {
+
+            }
+
+            @Override
+            public void onCardSingleTap(int i) {
+
+            }
+
+            @Override
+            public void onCardDoubleTap(int i) {
+
+            }
+
+            @Override
+            public void onCardLongPress(int i) {
+
+            }
+
+            @Override
+            public void onEmptyDeck() {
+
+            }
+        });
+
     }
 
     private void storeDataInArrays() {
@@ -48,6 +107,9 @@ public class LearnCardsActivity extends AppCompatActivity {
                 translated.add(cursor.getString(2));
             }
         }
+
+        frequency = new int[origin.size()];
+        Arrays.fill(frequency,2);
     }
 
     private void initItems() {
