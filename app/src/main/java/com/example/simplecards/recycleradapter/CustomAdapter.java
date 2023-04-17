@@ -1,13 +1,11 @@
 package com.example.simplecards.recycleradapter;
 
+import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
-import android.util.Log;
-import android.view.ActionMode;
+import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,8 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.lifecycle.LifecycleOwner;
-import androidx.lifecycle.Observer;
+import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.simplecards.R;
@@ -28,13 +25,13 @@ import com.example.simplecards.database.MyDataBaseHelper;
 
 import java.util.ArrayList;
 
-public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHolder>{
+public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHolder> {
 
     Context context;
-    ArrayList<String> originText, translatedText,id;
+    ArrayList<String> originText, translatedText, id;
     MyDataBaseHelper myDB;
 
-    public CustomAdapter(Context context,ArrayList<String> id, ArrayList<String> originText, ArrayList<String> translatedText) {
+    public CustomAdapter(Context context, ArrayList<String> id, ArrayList<String> originText, ArrayList<String> translatedText) {
         this.context = context;
         this.id = id;
         this.originText = originText;
@@ -45,7 +42,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(context);
-        View view = inflater.inflate(R.layout.custom_adapter_list_words,parent,false);
+        View view = inflater.inflate(R.layout.custom_adapter_list_words, parent, false);
         return new MyViewHolder(view);
     }
 
@@ -53,7 +50,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         holder.txtOrigin.setText(String.valueOf(originText.get(position)));
         holder.txtTranslated.setText(String.valueOf(translatedText.get(position)));
-        holder.txtNumber.setText(String.valueOf(position+1));
+        holder.txtNumber.setText(String.valueOf(position + 1));
     }
 
     @Override
@@ -61,7 +58,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
         return originText.size();
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         private TextView txtOrigin, txtTranslated, txtNumber;
         private ImageView imageSelect;
@@ -87,43 +84,68 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
         }
 
         //Show popUpMenu in ShowCardsActivity & set OnMenuItemCLickListener
-        private void showPopUpMenu(View view){
-            PopupMenu popupMenu = new PopupMenu(view.getContext(),view);
+        private void showPopUpMenu(View view) {
+            PopupMenu popupMenu = new PopupMenu(view.getContext(), view);
             popupMenu.inflate(R.menu.show_cards_menu);
 
 
             popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                 @Override
                 public boolean onMenuItemClick(MenuItem menuItem) {
-                    switch (menuItem.getItemId()){
+                    switch (menuItem.getItemId()) {
                         case R.id.delete_menu:
-                            //If successfully removed from Database then remove from ArrayList in RecyclerView
-                            if(myDB.deleteItem(originText.get(getAdapterPosition()),
-                                    translatedText.get(getAdapterPosition()))
-                            ){
-                                //Removing from lists
-                                originText.remove(originText.get(getAdapterPosition()));
-                                translatedText.remove(translatedText.get(getAdapterPosition()));
-
-                                //Go to the ShowCardsActivity to see changes
-                                context.startActivity(new Intent(context, ShowCardsActivity.class));
-                            }else{
-                                Toast.makeText(context, "Fail to delete", Toast.LENGTH_SHORT).show();
-                            }
-                        return true;
+                            //Before delete we need to confirm in this do
+                            confirmDialog(getAdapterPosition());
+                            return true;
                         case R.id.editMenu:
                             Intent intent = new Intent(context, UpdateActivity.class);
-                            intent.putExtra("id",String.valueOf(id.get(getAdapterPosition())));
-                            intent.putExtra("origin",String.valueOf(originText.get(getAdapterPosition())));
-                            intent.putExtra("translated",String.valueOf(translatedText.get(getAdapterPosition())));
+                            intent.putExtra("id", String.valueOf(id.get(getAdapterPosition())));
+                            intent.putExtra("origin", String.valueOf(originText.get(getAdapterPosition())));
+                            intent.putExtra("translated", String.valueOf(translatedText.get(getAdapterPosition())));
                             context.startActivity(intent);
-                        return true;
+                            return true;
 
-                        default: return false;
+                        default:
+                            return false;
                     }
                 }
             });
             popupMenu.show();
         }
     }
+
+    //Alert Dialog Icon
+    private void confirmDialog(int position) {
+        AlertDialog.Builder alert = new AlertDialog.Builder(context);
+        alert.setTitle("Delete words");
+        alert.setMessage("Are you sure to delete these words?");
+        alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                //If successfully removed from Database then remove from ArrayList in RecyclerView
+                if (myDB.deleteItem(originText.get(position),
+                        translatedText.get(position))
+                ) {
+                    //Removing from lists
+                    originText.remove(originText.get(position));
+                    translatedText.remove(translatedText.get(position));
+
+                    //Go to the ShowCardsActivity to see changes
+                    context.startActivity(new Intent(context, ShowCardsActivity.class));
+                } else {
+                    Toast.makeText(context, "Fail to delete", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+        alert.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+            }
+        });
+
+        alert.create().show();
+    }
+
 }

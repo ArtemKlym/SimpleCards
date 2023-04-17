@@ -29,8 +29,6 @@ public class SwipeAdapter extends BaseAdapter {
     private TextView frontText,backText;
 
 
-    private boolean isFront = true;
-
     public SwipeAdapter(Context context, ArrayList<String> originWord, ArrayList<String> translatedWord) {
         this.context = context;
         this.originWord = originWord;
