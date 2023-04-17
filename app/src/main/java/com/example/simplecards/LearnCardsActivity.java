@@ -42,6 +42,7 @@ public class LearnCardsActivity extends AppCompatActivity {
         swipeAdapter = new SwipeAdapter(this,origin,translated);
         koloda.setAdapter(swipeAdapter);
 
+
         koloda.setKolodaListener(new KolodaListener() {
             @Override
             public void onNewTopCard(int i) {
@@ -55,14 +56,11 @@ public class LearnCardsActivity extends AppCompatActivity {
 
             @Override
             public void onCardSwipedLeft(int i) {
-                if(frequency[i] > 0)
-                    frequency[i] +=1;
             }
 
             @Override
             public void onCardSwipedRight(int i) {
-                if(frequency[i] > 0)
-                    frequency[i] -=1;
+
             }
 
             @Override
@@ -95,7 +93,6 @@ public class LearnCardsActivity extends AppCompatActivity {
 
             }
         });
-
     }
 
     private void storeDataInArrays() {
