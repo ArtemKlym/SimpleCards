@@ -5,12 +5,65 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".LearnCardsActivity"
-    android:background="@color/teal_200">
+    android:background="@color/purple_200">
 
     <com.yalantis.library.Koloda
         android:id="@+id/koloda"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:koloda_card_layout="@layout/item_koloda" />
+        android:layout_width="400dp"
+        android:layout_height="400dp"
+        app:koloda_card_layout="@layout/item_koloda"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <RelativeLayout
+        android:id="@+id/rlShowClueTop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@+id/koloda"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.741">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="Swipe right if you KNOW word"
+            android:textSize="18sp"
+            android:textColor="@color/green"
+            android:textStyle="bold"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rlShowClueBottom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/koloda"
+        app:layout_constraintVertical_bias="0.315"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Swipe left unless you KNOW word"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:textColor="@color/red"/>
+
+    </RelativeLayout>
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

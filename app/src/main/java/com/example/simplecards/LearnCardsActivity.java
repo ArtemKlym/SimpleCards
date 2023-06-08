@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.util.ArraySet;
 import android.util.Log;
 import android.view.View;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.example.simplecards.database.MyDataBaseHelper;
@@ -26,6 +27,8 @@ public class LearnCardsActivity extends AppCompatActivity {
     private SwipeAdapter swipeAdapter;
     private ArrayList<String> origin,translated;
     private MyDataBaseHelper myDB;
+
+    private RelativeLayout showTextTop, showTextBottom;
     Koloda koloda;
 
 
@@ -43,7 +46,6 @@ public class LearnCardsActivity extends AppCompatActivity {
         koloda.setAdapter(swipeAdapter);
 
         koloda.setKolodaListener(new KolodaListener() {
-
 
             @Override
             public void onNewTopCard(int i) {
@@ -66,7 +68,7 @@ public class LearnCardsActivity extends AppCompatActivity {
 
             @Override
             public void onCardSwipedRight(int i) {
-
+                
             }
 
             @Override
@@ -81,7 +83,15 @@ public class LearnCardsActivity extends AppCompatActivity {
 
             @Override
             public void onCardSingleTap(int i) {
-
+                int tap = 0;
+                if(showTextBottom.getVisibility() != View.VISIBLE && showTextTop.getVisibility() != View.VISIBLE && tap % 2==0){
+                    showTextBottom.setVisibility(View.VISIBLE);
+                    showTextTop.setVisibility(View.VISIBLE);
+                    tap++;
+                }else{
+                    showTextBottom.setVisibility(View.GONE);
+                    showTextTop.setVisibility(View.GONE);
+                }
             }
 
             @Override
@@ -99,6 +109,8 @@ public class LearnCardsActivity extends AppCompatActivity {
 
             }
         });
+
+
     }
 
     private void storeDataInArrays() {
@@ -114,6 +126,9 @@ public class LearnCardsActivity extends AppCompatActivity {
 
     private void initItems() {
         koloda = findViewById(R.id.koloda);
+
+        showTextBottom = findViewById(R.id.rlShowClueBottom);
+        showTextTop = findViewById(R.id.rlShowClueTop);
 
         origin = new ArrayList<>();
         translated = new ArrayList<>();
