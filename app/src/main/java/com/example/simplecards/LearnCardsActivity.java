@@ -24,7 +24,7 @@ import java.util.Arrays;
 public class LearnCardsActivity extends AppCompatActivity {
 
     private SwipeAdapter swipeAdapter;
-    private ArrayList<String> origin,translated,swipeLeftOrigin,swipeLeftTranslated;
+    private ArrayList<String> origin,translated;
     private MyDataBaseHelper myDB;
     Koloda koloda;
 
@@ -43,6 +43,8 @@ public class LearnCardsActivity extends AppCompatActivity {
         koloda.setAdapter(swipeAdapter);
 
         koloda.setKolodaListener(new KolodaListener() {
+
+
             @Override
             public void onNewTopCard(int i) {
 
@@ -115,8 +117,6 @@ public class LearnCardsActivity extends AppCompatActivity {
 
         origin = new ArrayList<>();
         translated = new ArrayList<>();
-        swipeLeftOrigin = new ArrayList<>();
-        swipeLeftTranslated = new ArrayList<>();
 
         myDB = new MyDataBaseHelper(LearnCardsActivity.this);
     }
