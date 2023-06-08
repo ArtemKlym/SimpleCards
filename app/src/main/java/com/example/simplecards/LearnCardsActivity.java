@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.util.ArraySet;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import com.example.simplecards.database.MyDataBaseHelper;
 import com.example.simplecards.swipeadpter.SwipeAdapter;
@@ -27,7 +28,6 @@ public class LearnCardsActivity extends AppCompatActivity {
     private MyDataBaseHelper myDB;
     Koloda koloda;
 
-    private int[] frequency;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,8 +42,9 @@ public class LearnCardsActivity extends AppCompatActivity {
         swipeAdapter = new SwipeAdapter(this,origin,translated);
         koloda.setAdapter(swipeAdapter);
 
-
         koloda.setKolodaListener(new KolodaListener() {
+
+
             @Override
             public void onNewTopCard(int i) {
 
@@ -56,6 +57,11 @@ public class LearnCardsActivity extends AppCompatActivity {
 
             @Override
             public void onCardSwipedLeft(int i) {
+                String originSwipe = origin.get(i+1);
+                String translateSwipe = translated.get(i+1);
+
+                swipeAdapter.addSwiped(originSwipe,translateSwipe);
+                swipeAdapter.notifyDataSetChanged();
             }
 
             @Override
@@ -104,9 +110,6 @@ public class LearnCardsActivity extends AppCompatActivity {
                 translated.add(cursor.getString(2));
             }
         }
-
-        frequency = new int[origin.size()];
-        Arrays.fill(frequency,2);
     }
 
     private void initItems() {

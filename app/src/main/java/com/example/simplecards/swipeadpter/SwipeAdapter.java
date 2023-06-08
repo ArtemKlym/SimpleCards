@@ -72,4 +72,9 @@ public class SwipeAdapter extends BaseAdapter {
         frontText = itemView.findViewById(R.id.textFront);
         backText = itemView.findViewById(R.id.textBack);
     }
+
+    public void addSwiped(String origin, String translate){
+        originWord.add(origin);
+        translatedWord.add(translate);
+    }
 }
