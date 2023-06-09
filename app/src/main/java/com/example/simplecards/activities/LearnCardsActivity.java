@@ -1,26 +1,20 @@
-package com.example.simplecards;
+package com.example.simplecards.activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
 
-import android.animation.AnimatorInflater;
-import android.animation.AnimatorSet;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.util.ArraySet;
-import android.util.Log;
 import android.view.View;
 import android.widget.RelativeLayout;
-import android.widget.Toast;
 
+import com.example.simplecards.R;
 import com.example.simplecards.database.MyDataBaseHelper;
 import com.example.simplecards.swipeadpter.SwipeAdapter;
 import com.yalantis.library.Koloda;
 import com.yalantis.library.KolodaListener;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class LearnCardsActivity extends AppCompatActivity {
 
@@ -54,7 +48,8 @@ public class LearnCardsActivity extends AppCompatActivity {
 
             @Override
             public void onCardDrag(int i, @NonNull View view, float v) {
-
+                showTextBottom.setVisibility(View.VISIBLE);
+                showTextTop.setVisibility(View.VISIBLE);
             }
 
             @Override
@@ -64,11 +59,15 @@ public class LearnCardsActivity extends AppCompatActivity {
 
                 swipeAdapter.addSwiped(originSwipe,translateSwipe);
                 swipeAdapter.notifyDataSetChanged();
+
+                showTextBottom.setVisibility(View.GONE);
+                showTextTop.setVisibility(View.GONE);
             }
 
             @Override
             public void onCardSwipedRight(int i) {
-                
+                showTextBottom.setVisibility(View.GONE);
+                showTextTop.setVisibility(View.GONE);
             }
 
             @Override

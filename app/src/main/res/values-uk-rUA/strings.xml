@@ -7,4 +7,7 @@
     <string name="txtBtn_start">ПОЧАТОК</string>
     <string name="txtShow_no_word">НЕ МАЄ СЛОВА</string>
     <string name="todo">TODO</string>
+    <string name="cards">Картки</string>
+    <string name="know">ЗНАЮ</string>
+    <string name="show_again">ПОКАЗАТИ ЗНОВУ</string>
 </resources>
