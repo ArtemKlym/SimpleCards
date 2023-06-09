@@ -7,4 +7,6 @@
     <string name="txtShow_no_word">NO WORD</string>
     <string name="todo">TODO</string>
     <string name="cards">cards</string>
+    <string name="know">KNOW</string>
+    <string name="show_again">SHOW AGAIN</string>
 </resources>

@@ -16,27 +16,27 @@
         android:theme="@style/Theme.SimpleCards"
         tools:targetApi="31">
         <activity
-            android:name=".LearnCardsActivity"
+            android:name=".activities.LearnCardsActivity"
             android:exported="false"
             android:label="@string/cards"
-            android:parentActivityName=".MainActivity"/>
+            android:parentActivityName=".activities.MainActivity"/>
         <activity
-            android:name=".UpdateActivity"
+            android:name=".activities.UpdateActivity"
             android:exported="false"
             android:label="Update card"
-            android:parentActivityName=".ShowCardsActivity" />
+            android:parentActivityName=".activities.ShowCardsActivity" />
         <activity
-            android:name=".ShowCardsActivity"
+            android:name=".activities.ShowCardsActivity"
             android:exported="false"
             android:label="Cards List"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName=".activities.MainActivity" />
         <activity
-            android:name=".AddWordActivity"
+            android:name=".activities.AddWordActivity"
             android:exported="false"
             android:label="Add Word"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName=".activities.MainActivity" />
         <activity
-            android:name=".MainActivity"
+            android:name=".activities.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

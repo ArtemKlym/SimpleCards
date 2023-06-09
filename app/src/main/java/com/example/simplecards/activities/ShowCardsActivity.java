@@ -1,4 +1,4 @@
-package com.example.simplecards;
+package com.example.simplecards.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -8,6 +8,7 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.widget.Toast;
 
+import com.example.simplecards.R;
 import com.example.simplecards.database.MyDataBaseHelper;
 import com.example.simplecards.recycleradapter.CustomAdapter;
 

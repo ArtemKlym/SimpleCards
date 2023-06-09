@@ -1,10 +1,8 @@
 package com.example.simplecards.recycleradapter;
 
-import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -19,8 +17,8 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.simplecards.R;
-import com.example.simplecards.ShowCardsActivity;
-import com.example.simplecards.UpdateActivity;
+import com.example.simplecards.activities.ShowCardsActivity;
+import com.example.simplecards.activities.UpdateActivity;
 import com.example.simplecards.database.MyDataBaseHelper;
 
 import java.util.ArrayList;
