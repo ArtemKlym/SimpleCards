@@ -19,6 +19,7 @@ import com.example.simplecards.R;
 import com.example.simplecards.database.MyDataBaseHelper;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.ml.common.modeldownload.FirebaseModelDownloadConditions;
 import com.google.firebase.ml.naturallanguage.FirebaseNaturalLanguage;
 import com.google.firebase.ml.naturallanguage.translate.FirebaseTranslateLanguage;
@@ -30,16 +31,16 @@ import java.util.concurrent.Executor;
 @SuppressWarnings("ALL")
 public class AddWordActivity extends AppCompatActivity {
 
-   private EditText originText, translatedText;
-   private Spinner fromSpinner, toSpinner;
-   private Button btnAdd, btnTranslate;
-   private TextView translateTextView;
-   private String[] fromLanguages = {"From","English","Spain","German","Ukrainian","Russian","Japanese","Mandarin","Hindi","Bengali","French","Italian","Polish"};
-   private String[] toLanguages = {"TO","English","Spain","German","Ukrainian","Russian","Japanese","Mandarin","Hindi","Bengali","French","Italian","Polish"};
+    private EditText originText, translatedText;
+    private Spinner fromSpinner, toSpinner;
+    private Button btnAdd, btnTranslate;
+    private TextView translateTextView;
+    private String[] fromLanguages = {"From","English","Spain","German","Ukrainian","Russian","Japanese","Mandarin","Hindi","Bengali","French","Italian","Polish"};
+    private String[] toLanguages = {"TO","English","Spain","German","Ukrainian","Russian","Japanese","Mandarin","Hindi","Bengali","French","Italian","Polish"};
 
-   int fromLangCode, toLangCode = 0;
+    int fromLangCode, toLangCode = 0;
 
-   private MyDataBaseHelper myDB;
+    private MyDataBaseHelper myDB;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,10 +90,12 @@ public class AddWordActivity extends AppCompatActivity {
         originText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
             }
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
             }
 
             @Override
@@ -182,7 +185,7 @@ public class AddWordActivity extends AppCompatActivity {
         translateTextView = findViewById(R.id.txtViewLoad);
 
         originText = findViewById(R.id.edtTxtOriginalWord);
-        translatedText = findViewById(R.id.edtTxtTranslatedlWord);
+        translatedText = findViewById(R.id.edtTxtTranslatedWord);
 
         fromSpinner = findViewById(R.id.spinnerSelectLang1);
         toSpinner = findViewById(R.id.spinnerSelectLang2);
