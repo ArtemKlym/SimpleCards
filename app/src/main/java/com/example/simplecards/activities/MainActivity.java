@@ -2,9 +2,14 @@ package com.example.simplecards.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
 
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -13,6 +18,12 @@ import android.widget.Button;
 import com.example.simplecards.R;
 import com.google.android.material.bottomappbar.BottomAppBar;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.BaseTransientBottomBar;
+import com.google.android.material.snackbar.Snackbar;
+
+import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.URL;
 
 public class MainActivity extends AppCompatActivity {
     private Button btnStart;
@@ -32,7 +43,11 @@ public class MainActivity extends AppCompatActivity {
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, AddWordActivity.class));
+                if (isConnected()) {
+                    startActivity(new Intent(MainActivity.this, AddWordActivity.class));
+                } else {
+                    showNoInternet();
+                }
             }
         });
 
@@ -49,8 +64,32 @@ public class MainActivity extends AppCompatActivity {
         });
 
         btnStart.setOnClickListener(v->{
-            startActivity(new Intent(MainActivity.this,LearnCardsActivity.class));
+            if(isConnected()) {
+                startActivity(new Intent(MainActivity.this,LearnCardsActivity.class));
+            }else{
+                showNoInternet();
+            }
         });
+    }
+
+
+    private void showNoInternet() {
+        Snackbar snackbar = Snackbar.make(bottomAppBar, R.string.no_connection, BaseTransientBottomBar.LENGTH_LONG);
+        View view = snackbar.getView();
+        CoordinatorLayout.LayoutParams params = (CoordinatorLayout.LayoutParams) view.getLayoutParams();
+        params.setMargins(
+                params.leftMargin+0,
+                params.topMargin,
+                params.rightMargin+0,
+                params.bottomMargin+240
+        );
+        view.setLayoutParams(params);
+        snackbar.show();
+    }
+
+    public boolean isConnected(){
+        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        return cm.getActiveNetworkInfo() != null && cm.getActiveNetworkInfo().isConnected();
     }
 
     private void initViews() {
